@@ -7,9 +7,9 @@ namespace CP.Pagamentos.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PagamentoController : MainController
+public class MercadoPagoWebhookController : MainController
 {
-    public PagamentoController(ILogger<PagamentoController> logger) : base(logger)
+    public MercadoPagoWebhookController(ILogger<MercadoPagoWebhookController> logger) : base(logger)
     {
     }
 

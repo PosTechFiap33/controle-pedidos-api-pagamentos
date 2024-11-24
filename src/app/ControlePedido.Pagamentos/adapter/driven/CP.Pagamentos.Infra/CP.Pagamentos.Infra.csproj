@@ -7,13 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="../../core/CP.Pagamentos.Application/CP.Pagamentos.Application.csproj" />
-        <ProjectReference Include="../../core/CP.Pagamentos.Domain/CP.Pagamentos.Domain.csproj" />
-        <ProjectReference Include="../driven/CP.Pagamentos.Infra/CP.Pagamentos.Infra.csproj" />
+      <ProjectReference Include="../../../core/CP.Pagamentos.Domain/CP.Pagamentos.Domain.csproj" />
     </ItemGroup>
 
 </Project>

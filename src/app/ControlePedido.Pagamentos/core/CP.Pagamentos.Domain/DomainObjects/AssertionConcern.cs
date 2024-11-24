@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace CP.Pagamentos.Domain.DomainObjects;
 
 public abstract class AssertionConcern
