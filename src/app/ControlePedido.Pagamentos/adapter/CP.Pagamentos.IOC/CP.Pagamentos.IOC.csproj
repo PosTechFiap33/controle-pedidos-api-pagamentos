@@ -13,6 +13,7 @@
     <ItemGroup>
         <ProjectReference Include="../../core/CP.Pagamentos.Application/CP.Pagamentos.Application.csproj" />
         <ProjectReference Include="../../core/CP.Pagamentos.Domain/CP.Pagamentos.Domain.csproj" />
+        <ProjectReference Include="../driven/CP.Pagamentos.Data/CP.Pagamentos.Data.csproj" />
         <ProjectReference Include="../driven/CP.Pagamentos.Infra/CP.Pagamentos.Infra.csproj" />
     </ItemGroup>
 

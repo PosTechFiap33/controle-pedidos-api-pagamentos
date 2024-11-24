@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 using CP.Pagamentos.Api.Middlewares;
+using CP.Pagamentos.Infra.Configurations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CP.Pagamentos.Api.Configurations;
@@ -24,12 +25,6 @@ public static class ApiConfiguration
             options.Filters.Add<CustomModelStateValidationFilter>()
         ).AddJsonOptions(options =>
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
-        // services.Configure<MercadoPagoIntegration>(configuration.GetSection("MercadoPagoIntegration"));
-
-        // services.RegisterPaymentServices();
-
-        // services.RegisterServices();
 
         services.AddEndpointsApiExplorer();
 

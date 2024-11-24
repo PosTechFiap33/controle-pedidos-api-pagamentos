@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Driven", "Driven", "{1DC9B0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.Pagamentos.Infra", "adapter\driven\CP.Pagamentos.Infra\CP.Pagamentos.Infra.csproj", "{F3069DF8-BD61-4779-A70F-C4F2C9D1525C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.Pagamentos.Data", "adapter\driven\CP.Pagamentos.Data\CP.Pagamentos.Data.csproj", "{5C27CBF9-A983-4357-B512-AECCC26FF750}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{F3069DF8-BD61-4779-A70F-C4F2C9D1525C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3069DF8-BD61-4779-A70F-C4F2C9D1525C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3069DF8-BD61-4779-A70F-C4F2C9D1525C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C27CBF9-A983-4357-B512-AECCC26FF750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C27CBF9-A983-4357-B512-AECCC26FF750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C27CBF9-A983-4357-B512-AECCC26FF750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C27CBF9-A983-4357-B512-AECCC26FF750}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +69,6 @@ Global
 		{9563599E-9BDC-4ED7-B0D0-CB4F7653644E} = {089DD01E-C754-40CB-8E6E-63320477AA7C}
 		{1DC9B007-B807-4F95-871B-E7B39DDAC9CC} = {B4614E56-C26D-4802-BDF8-3498CBFC1508}
 		{F3069DF8-BD61-4779-A70F-C4F2C9D1525C} = {1DC9B007-B807-4F95-871B-E7B39DDAC9CC}
+		{5C27CBF9-A983-4357-B512-AECCC26FF750} = {1DC9B007-B807-4F95-871B-E7B39DDAC9CC}
 	EndGlobalSection
 EndGlobal
