@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="../../common/CP.Pagamentos.CrossCutting/CP.Pagamentos.CrossCutting.csproj" />
         <ProjectReference Include="../../core/CP.Pagamentos.Application/CP.Pagamentos.Application.csproj" />
         <ProjectReference Include="../../core/CP.Pagamentos.Domain/CP.Pagamentos.Domain.csproj" />
         <ProjectReference Include="../driven/CP.Pagamentos.Data/CP.Pagamentos.Data.csproj" />

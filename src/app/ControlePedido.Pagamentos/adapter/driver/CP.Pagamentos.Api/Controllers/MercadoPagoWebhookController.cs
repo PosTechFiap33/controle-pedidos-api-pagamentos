@@ -1,8 +1,6 @@
 using System.Net;
 using CP.Pagamentos.Api.DTOs;
 using CP.Pagamentos.Application.UseCases.PagarPedido;
-using CP.Pagamentos.Domain.Adapters.Repositories;
-using CP.Pagamentos.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CP.Pagamentos.Api.Controllers;
@@ -26,13 +24,8 @@ public class MercadoPagoWebhookController : MainController
     /// <returns>Uma resposta customizada com o status da operação.</returns>
     [HttpPost]
     public async Task<IActionResult> Pagamento([FromBody] PagamentoMercadoPago pagamento, 
-                                               [FromServices] IPagarPedidoUseCase useCase,
-                                               [FromServices] IPagamentoRepository repositorio)
+                                               [FromServices] IPagarPedidoUseCase useCase)
     {
-        repositorio.Criar(new Pagamento(Guid.NewGuid(), 10, "teste", "local", DateTime.UtcNow));
-
-        await repositorio.UnitOfWork.Commit();
-
         await useCase.Executar(new PagarPedidoUseCase(pagamento.Dados.TransacaoId));
 
         return CustomResponse(null, HttpStatusCode.Created);

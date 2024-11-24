@@ -1,3 +1,4 @@
+using CP.Pagamentos.Application.Configurations;
 using CP.Pagamentos.Application.UseCases.PagarPedido;
 using CP.Pagamentos.Data.Configuration;
 using CP.Pagamentos.Infra.Configurations;
@@ -11,6 +12,7 @@ public static class ApplicationDependencyInjections
     public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.ConfigureHttpPayment(configuration);
+        services.AddApplicationConfiguration();
         services.AddDatabaseConfiguration(configuration);
         services.AddTransient<IPagarPedidoUseCase, PagarPedidoUseCaseHandler>();
     }

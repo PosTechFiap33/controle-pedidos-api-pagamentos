@@ -17,7 +17,7 @@ public class PagamentoRepository : IPagamentoRepository
 
     public void Criar(Pagamento pagamento)
     {
-        _context.Add(pagamento.MapToDynamo(), TABLE_NAME);
+        _context.Add(new PagamentoDynamoDbMapping(pagamento), TABLE_NAME);
     }
 
     public void Dispose()

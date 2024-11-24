@@ -1,26 +1,34 @@
 using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.Model;
-using Amazon.Runtime;
 using CP.Pagamentos.Data.Configuration;
+using CP.Pagamentos.Data.Mappings;
 using CP.Pagamentos.Domain.Adapters.Repositories;
+using CP.Pagamentos.Domain.DomainObjects;
+using CP.Pagamentos.Domain.Entities;
 using Microsoft.Extensions.Options;
+using Amazon.Runtime;
 
 namespace CP.Pagamentos.Data;
 
 public class PagamentoDynamoDbContext : IUnitOfWork
 {
-    private readonly DynamoDBContext _context;
     private readonly AmazonDynamoDBClient _client;
-    private readonly List<TransactWriteItem> _writeOperations;
+    private readonly Dictionary<TransactWriteItem, IDomainNotification> _writeOperations;
+    private readonly IDomainNotificationEmmiter _notificationHandler;
+    // private readonly ILogger<PagamentoDynamoDbContext> _logger;
 
-
-    public PagamentoDynamoDbContext(IOptions<AWSConfiguration> configuration)
+    public PagamentoDynamoDbContext(IOptions<AWSConfiguration> configuration,
+                                    IDomainNotificationEmmiter domainNotificationHandler/*,
+                                    ILogger<PagamentoDynamoDbContext> logger*/)
     {
+        // _logger = logger;
+
+        _notificationHandler = domainNotificationHandler;
+
         var awsConfiguration = configuration.Value;
 
         var credentials = new BasicAWSCredentials(awsConfiguration.AccessKey, awsConfiguration.SecretKey);
-        
+
         var config = new AmazonDynamoDBConfig
         {
             RegionEndpoint = Amazon.RegionEndpoint.GetBySystemName(awsConfiguration.Region),
@@ -28,36 +36,57 @@ public class PagamentoDynamoDbContext : IUnitOfWork
         };
 
         _client = new AmazonDynamoDBClient(credentials, config);
-        _context = new DynamoDBContext(_client);
-        _writeOperations = new List<TransactWriteItem>();
+
+        _writeOperations = new Dictionary<TransactWriteItem, IDomainNotification>();
     }
 
     public async Task<bool> Commit()
     {
-        if (_writeOperations.Any())
+        if (!_writeOperations.Any())
+            return true;
+
+        var transactRequest = new TransactWriteItemsRequest
         {
-            var transactRequest = new TransactWriteItemsRequest
-            {
-                TransactItems = _writeOperations
-            };
+            TransactItems = _writeOperations.Keys.ToList()
+        };
 
+        try
+        {
             var response = await _client.TransactWriteItemsAsync(transactRequest);
-            return response.HttpStatusCode == System.Net.HttpStatusCode.OK;
-        }
 
-        return false;
+            if (response.HttpStatusCode != System.Net.HttpStatusCode.OK)
+            {
+                //    _logger.LogError("Transação do banco falhou com status {StatusCode}", response.HttpStatusCode);
+                return false;
+            }
+
+            var notificationTasks = _writeOperations.Values
+                .Select(notification => _notificationHandler.SendNotification(notification))
+                .ToArray();
+
+            await Task.WhenAll(notificationTasks);
+
+            return true;
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+            //   _logger.LogError(ex, "Ocorreu um erro ao persistir os dados no banco!");
+            return false;
+        }
     }
 
-    public void Add(Dictionary<string, AttributeValue> values, string tableName)
+    public void Add<T>(IDynamoEntity<T> dynamoEntity, string tableName) where T : Entity, IAggregateRoot
     {
         _writeOperations.Add(new TransactWriteItem
         {
             Put = new Put
             {
                 TableName = tableName,
-                Item = values
+                Item = dynamoEntity.MapToDynamo()
             }
-        });
+        }, dynamoEntity.Entity.Notification);
     }
 
     public void Dispose()

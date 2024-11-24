@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.Pagamentos.Infra", "adap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.Pagamentos.Data", "adapter\driven\CP.Pagamentos.Data\CP.Pagamentos.Data.csproj", "{5C27CBF9-A983-4357-B512-AECCC26FF750}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP.Pagamentos.CrossCutting", "common\CP.Pagamentos.CrossCutting\CP.Pagamentos.CrossCutting.csproj", "{A70CED9F-EFA2-4993-9112-C1197938A6FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{5C27CBF9-A983-4357-B512-AECCC26FF750}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C27CBF9-A983-4357-B512-AECCC26FF750}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C27CBF9-A983-4357-B512-AECCC26FF750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A70CED9F-EFA2-4993-9112-C1197938A6FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70CED9F-EFA2-4993-9112-C1197938A6FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70CED9F-EFA2-4993-9112-C1197938A6FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70CED9F-EFA2-4993-9112-C1197938A6FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,5 +76,6 @@ Global
 		{1DC9B007-B807-4F95-871B-E7B39DDAC9CC} = {B4614E56-C26D-4802-BDF8-3498CBFC1508}
 		{F3069DF8-BD61-4779-A70F-C4F2C9D1525C} = {1DC9B007-B807-4F95-871B-E7B39DDAC9CC}
 		{5C27CBF9-A983-4357-B512-AECCC26FF750} = {1DC9B007-B807-4F95-871B-E7B39DDAC9CC}
+		{A70CED9F-EFA2-4993-9112-C1197938A6FE} = {C2AD93DA-D46A-46DE-BCF8-356A710A81A1}
 	EndGlobalSection
 EndGlobal

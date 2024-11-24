@@ -1,14 +1,20 @@
-using System;
+using CP.Pagamentos.Domain.DomainObjects;
 
 namespace CP.Pagamentos.Domain.Entities;
 
 public abstract class Entity
 {
+    public IDomainNotification Notification { get; private set; }
+    
     public Guid Id { get; set; }
 
     public Entity()
     {
         Id = Guid.NewGuid();
+    }
+
+    public void AddNotification(IDomainNotification notification){
+        Notification = notification;
     }
 
     public override bool Equals(object obj)

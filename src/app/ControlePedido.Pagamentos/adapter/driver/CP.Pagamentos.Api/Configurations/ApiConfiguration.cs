@@ -1,14 +1,12 @@
-using System;
 using System.Text.Json.Serialization;
 using CP.Pagamentos.Api.Middlewares;
-using CP.Pagamentos.Infra.Configurations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CP.Pagamentos.Api.Configurations;
 
 public static class ApiConfiguration
 {
-    public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
     {
         services.AddLogging(config =>
         {
