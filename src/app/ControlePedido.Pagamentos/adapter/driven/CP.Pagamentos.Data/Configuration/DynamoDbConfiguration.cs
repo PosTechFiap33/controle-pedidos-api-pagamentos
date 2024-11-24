@@ -1,4 +1,4 @@
-using System;
+using CP.Pagamentos.CrpssCutting.Configuration;
 using CP.Pagamentos.Data.Repositories;
 using CP.Pagamentos.Domain.Adapters.Repositories;
 using Microsoft.Extensions.Configuration;

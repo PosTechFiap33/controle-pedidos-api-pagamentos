@@ -7,7 +7,7 @@ services:
       - "4566:4566" # Porta para o gateway de serviços
       - "8000:8000" # Porta para o DynamoDB
     environment:
-      - SERVICES=dynamodb
+      - SERVICES=dynamodb,sqs
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "./localstack_data:/var/lib/localstack" # Persistência opcional

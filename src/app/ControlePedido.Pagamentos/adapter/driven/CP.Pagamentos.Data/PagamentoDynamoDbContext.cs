@@ -1,12 +1,12 @@
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
-using CP.Pagamentos.Data.Configuration;
 using CP.Pagamentos.Data.Mappings;
 using CP.Pagamentos.Domain.Adapters.Repositories;
 using CP.Pagamentos.Domain.DomainObjects;
 using CP.Pagamentos.Domain.Entities;
 using Microsoft.Extensions.Options;
-using Amazon.Runtime;
+using CP.Pagamentos.CrpssCutting.Configuration;
+using CP.Pagamentos.CrossCutting.Factories;
 
 namespace CP.Pagamentos.Data;
 
@@ -27,15 +27,12 @@ public class PagamentoDynamoDbContext : IUnitOfWork
 
         var awsConfiguration = configuration.Value;
 
-        var credentials = new BasicAWSCredentials(awsConfiguration.AccessKey, awsConfiguration.SecretKey);
-
         var config = new AmazonDynamoDBConfig
         {
             RegionEndpoint = Amazon.RegionEndpoint.GetBySystemName(awsConfiguration.Region),
-            ServiceURL = awsConfiguration.DynamoDb.ServiceUrl,
         };
 
-        _client = new AmazonDynamoDBClient(credentials, config);
+        _client = new AmazonDynamoDBClient(config.CreateCredentials(awsConfiguration), config);
 
         _writeOperations = new Dictionary<TransactWriteItem, IDomainNotification>();
     }

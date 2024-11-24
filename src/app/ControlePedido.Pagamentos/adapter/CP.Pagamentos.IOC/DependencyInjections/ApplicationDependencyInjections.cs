@@ -11,7 +11,7 @@ public static class ApplicationDependencyInjections
 {
     public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.ConfigureHttpPayment(configuration);
+        services.AddInfraConfiguration(configuration);
         services.AddApplicationConfiguration();
         services.AddDatabaseConfiguration(configuration);
         services.AddTransient<IPagarPedidoUseCase, PagarPedidoUseCaseHandler>();

@@ -6,7 +6,7 @@ namespace CP.Pagamentos.Data.Repositories;
 
 public class PagamentoRepository : IPagamentoRepository
 {
-    private const string TABLE_NAME = "Pagamentos";
+    private const string TABLE_NAME = "ControlePedidosPagamentos";
     private readonly PagamentoDynamoDbContext _context;
     public IUnitOfWork UnitOfWork => _context;
 
