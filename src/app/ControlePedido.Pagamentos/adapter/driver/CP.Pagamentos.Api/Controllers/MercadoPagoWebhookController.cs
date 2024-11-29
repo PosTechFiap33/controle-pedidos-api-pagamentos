@@ -23,11 +23,20 @@ public class MercadoPagoWebhookController : MainController
     /// <param name="useCase">A instância do caso de uso para processar o pagamento.</param>
     /// <returns>Uma resposta customizada com o status da operação.</returns>
     [HttpPost]
-    public async Task<IActionResult> Pagamento([FromBody] PagamentoMercadoPago pagamento, 
+    public async Task<IActionResult> Pagamento([FromBody] PagamentoMercadoPago pagamento,
                                                [FromServices] IPagarPedidoUseCase useCase)
     {
-        await useCase.Executar(new PagarPedidoUseCase(pagamento.Dados.TransacaoId));
+        _logger.LogInformation($"{nameof(MercadoPagoWebhookController)} - {nameof(Pagamento)}: Iniciando processamento do pagamento", pagamento);
+       
+        var response = CustomResponse("Evento informado nao mapeado", statusCode: HttpStatusCode.NoContent);
 
-        return CustomResponse(null, HttpStatusCode.Created);
+        if (pagamento.Acao == "payment.created"){
+            await useCase.Executar(new PagarPedidoUseCase(pagamento.Dados.TransacaoId));
+            response = CustomResponse(statusCode: HttpStatusCode.Created);
+        }
+
+        _logger.LogInformation($"{nameof(MercadoPagoWebhookController)} - {nameof(Pagamento)}: Resultado do processamento do pagamento", pagamento);
+
+        return response;
     }
 }

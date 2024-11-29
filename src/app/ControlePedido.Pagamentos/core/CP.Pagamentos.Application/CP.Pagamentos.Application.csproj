@@ -8,13 +8,11 @@
 
     <ItemGroup>
         <PackageReference Include="MediatR" Version="12.4.1" />
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection"
-            Version="11.1.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference
-            Include="../../common/CP.Pagamentos.CrossCutting/CP.Pagamentos.CrossCutting.csproj" />
+        <ProjectReference Include="../../common/CP.Pagamentos.CrossCutting/CP.Pagamentos.CrossCutting.csproj" />
         <ProjectReference Include="../CP.Pagamentos.Domain/CP.Pagamentos.Domain.csproj" />
     </ItemGroup>
 

@@ -11,6 +11,9 @@ echo "LocalStack iniciado. Criando a tabela DynamoDB..."
 # Cria a tabela no DynamoDB
 awslocal dynamodb create-table  --table-name ControlePedidosPagamentos  --attribute-definitions AttributeName=PedidoId,AttributeType=S  --key-schema AttributeName=PedidoId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
 
+# Lista dados do dynamodb
+awslocal dynamodb scan --table-name ControlePedidosPagamentos
+
 # Cria a queue no SQS
 awslocal sqs create-queue --queue-name ControlePedidosPagamentos --attributes MessageRetentionPeriod=345600
 

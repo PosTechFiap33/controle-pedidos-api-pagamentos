@@ -1,5 +1,4 @@
 using CP.Pagamentos.Application.Configurations;
-using CP.Pagamentos.Application.UseCases.PagarPedido;
 using CP.Pagamentos.Data.Configuration;
 using CP.Pagamentos.Infra.Configurations;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +13,5 @@ public static class ApplicationDependencyInjections
         services.AddInfraConfiguration(configuration);
         services.AddApplicationConfiguration();
         services.AddDatabaseConfiguration(configuration);
-        services.AddTransient<IPagarPedidoUseCase, PagarPedidoUseCaseHandler>();
     }
 }

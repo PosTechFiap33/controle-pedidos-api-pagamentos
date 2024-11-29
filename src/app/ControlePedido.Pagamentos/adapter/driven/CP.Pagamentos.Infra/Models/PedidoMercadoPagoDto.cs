@@ -79,9 +79,9 @@ public class PedidoMercadoPagoDto
             Titulo = i.Nome,
             Descricao = i.Descricao,
             PrecoUnitario = i.Preco,
-            Quantidade = 1,
+            Quantidade = i.Quantidade,
             UnidadeMedida = "unit",
-            QuantiaTotal = i.Preco
+            QuantiaTotal = i.Preco * i.Quantidade
         }).ToList();
         UrlNotificacao = urlNotificacao;
         Titulo = "Pagamento para controle de pedido";
