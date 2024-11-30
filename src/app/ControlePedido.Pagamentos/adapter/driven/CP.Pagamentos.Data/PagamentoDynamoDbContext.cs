@@ -47,31 +47,21 @@ public class PagamentoDynamoDbContext : IUnitOfWork
             TransactItems = _writeOperations.Keys.ToList()
         };
 
-        try
+        var response = await _client.TransactWriteItemsAsync(transactRequest);
+
+        if (response.HttpStatusCode != System.Net.HttpStatusCode.OK)
         {
-            var response = await _client.TransactWriteItemsAsync(transactRequest);
-
-            if (response.HttpStatusCode != System.Net.HttpStatusCode.OK)
-            {
-                //    _logger.LogError("Transação do banco falhou com status {StatusCode}", response.HttpStatusCode);
-                return false;
-            }
-
-            var notificationTasks = _writeOperations.Values
-                .Select(notification => _notificationHandler.SendNotification(notification))
-                .ToArray();
-
-            await Task.WhenAll(notificationTasks);
-
-            return true;
-
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-            //   _logger.LogError(ex, "Ocorreu um erro ao persistir os dados no banco!");
+            //    _logger.LogError("Transação do banco falhou com status {StatusCode}", response.HttpStatusCode);
             return false;
         }
+
+        var notificationTasks = _writeOperations.Values
+            .Select(notification => _notificationHandler.SendNotification(notification))
+            .ToArray();
+
+        await Task.WhenAll(notificationTasks);
+
+        return true;
     }
 
     public void Add<T>(IDynamoEntity<T> dynamoEntity, string tableName) where T : Entity, IAggregateRoot

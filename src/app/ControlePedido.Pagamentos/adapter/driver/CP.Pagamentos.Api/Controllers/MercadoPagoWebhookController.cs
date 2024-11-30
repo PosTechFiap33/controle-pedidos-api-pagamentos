@@ -36,7 +36,7 @@ public class MercadoPagoWebhookController : MainController
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> Pagamento(
         [FromBody] PagamentoMercadoPago pagamento,
-        [FromServices] IPagamentoApiRequestAuthorization requestAuthorization,
+        [FromServices] IPaymentProviderRequestAuthorization requestAuthorization,
         [FromServices] IPagarPedidoUseCase useCase)
     {
         _logger.LogInformation(

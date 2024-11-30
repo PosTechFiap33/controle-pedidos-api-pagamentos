@@ -4,35 +4,41 @@ using CP.Pagamentos.Api.Middlewares;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using CP.Pagamentos.IOC.DependencyInjections;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddApiConfiguration();
-
-builder.Services.RegisterServices(builder.Configuration);
-
-builder.Services.AddSwaggerConfiguration();
-
-builder.Services.AddHealthChecks()
-                .AddCheck("self", () => HealthCheckResult.Healthy());
-                 
-var app = builder.Build();
-
-app.UseSwaggerApp();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Add services to the container.
+        builder.Services.AddApiConfiguration();
+
+        builder.Services.RegisterServices(builder.Configuration);
+
+        builder.Services.AddSwaggerConfiguration();
+
+        builder.Services.AddHealthChecks()
+                        .AddCheck("self", () => HealthCheckResult.Healthy());
+
+        var app = builder.Build();
+
+        app.UseSwaggerApp();
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
+    }
 }
-
-app.UseMiddleware<ExceptionHandlingMiddleware>();
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

@@ -15,7 +15,7 @@ public static class ApiConfiguration
             config.AddDebug();
         });
 
-        services.AddScoped<IPagamentoApiRequestAuthorization, MercadoPagoApiService>();
+        services.AddScoped<IPaymentProviderRequestAuthorization, MercadoPagoApiService>();
 
         services.Configure<ApiBehaviorOptions>(options =>
         {

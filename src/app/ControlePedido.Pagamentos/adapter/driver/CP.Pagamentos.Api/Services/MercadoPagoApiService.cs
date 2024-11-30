@@ -7,12 +7,12 @@ using Microsoft.Extensions.Primitives;
 
 namespace CP.Pagamentos.Api.Services;
 
-public interface IPagamentoApiRequestAuthorization
+public interface IPaymentProviderRequestAuthorization
 {
     bool IsValid(HttpRequest request);
 }
 
-public class MercadoPagoApiService : IPagamentoApiRequestAuthorization
+public class MercadoPagoApiService : IPaymentProviderRequestAuthorization
 {
     private readonly MercadoPagoIntegration _mercadoPagoIntegration;
 
