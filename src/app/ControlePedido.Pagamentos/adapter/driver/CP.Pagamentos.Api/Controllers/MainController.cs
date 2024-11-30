@@ -21,7 +21,10 @@ public abstract class MainController : ControllerBase
         if (OperacaoValida())
             response = StatusCode((int)statusCode, result);
         else
-            response = BadRequest(RecuperarErros());
+        {
+            var status = statusCode is HttpStatusCode.OK ? HttpStatusCode.BadRequest : statusCode;
+            response = StatusCode((int)status, RecuperarErros());
+        }
 
         string serializedValue = JsonSerializer.Serialize(response.Value);
         _logger.LogInformation("Resposta devolvida para o client - Status: {StatusCode} - Value: {Value}", response.StatusCode, serializedValue);

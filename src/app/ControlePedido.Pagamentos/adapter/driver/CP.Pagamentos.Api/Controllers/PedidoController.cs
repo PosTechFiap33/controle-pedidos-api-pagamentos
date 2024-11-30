@@ -16,20 +16,26 @@ public class PedidoController : MainController
     }
 
     /// <summary>
-    /// Gera um qrcode para pagamento do pedido  
+    /// Gera um QR Code para pagamento de um pedido específico.
     /// </summary>
     /// <remarks>
-    /// Recebe os dados de pagamento e executa o caso de uso para realizar o pagamento.
+    /// Esta operação recebe os dados de pagamento do cliente e utiliza um caso de uso para gerar o QR Code necessário para o pagamento do pedido. 
+    /// O QR Code gerado pode ser utilizado em sistemas de pagamento que suportam essa tecnologia para concluir a transação.
     /// </remarks>
-    /// <param name="pagamento">Os dados de pagamento fornecidos pelo cliente.</param>
-    /// <param name="useCase">A instância do caso de uso para processar o pagamento.</param>
-    /// <returns>Uma resposta customizada com o status da operação.</returns>
+    /// <param name="pagamento">Os dados de pagamento fornecidos pelo cliente, incluindo informações sobre os itens do pedido.</param>
+    /// <param name="pedidoId">O identificador único do pedido para o qual o QR Code de pagamento será gerado.</param>
+    /// <param name="useCase">A instância do caso de uso que executa a lógica para gerar o QR Code de pagamento.</param>
+    /// <returns>Uma resposta personalizada contendo o resultado da geração do QR Code, incluindo os dados gerados e o status da operação.</returns>
     [HttpPost("{pedidoId}/qrcode")]
-    public async Task<ActionResult<CriarQrCodePagamentoUseCaseResult>> Pagamento([FromBody] GeracaoQrCode geracaoQrCode,
-                                                                                 [FromRoute] Guid pedidoId,
-                                                                                 [FromServices] ICriarQrCodePagamentoUseCase useCase)
+    [ProducesResponseType(typeof(CriarQrCodePagamentoUseCaseResult), (int)HttpStatusCode.Created)]
+    public async Task<ActionResult<CriarQrCodePagamentoUseCaseResult>> GerarQrcode([FromBody] GeracaoQrCode geracaoQrCode,
+                                                                                   [FromRoute] Guid pedidoId,
+                                                                                   [FromServices] ICriarQrCodePagamentoUseCase useCase)
     {
+        _logger.LogInformation($"{nameof(PedidoController)} - {nameof(GerarQrcode)}: Iniciando geracao do qrcode para o pedido ${pedidoId}", geracaoQrCode);
+       
         var response = await useCase.Executar(new CriarQrCodePagamentoUseCase(pedidoId, geracaoQrCode.Itens));
+       
         return CustomResponse(response, HttpStatusCode.Created);
     }
 

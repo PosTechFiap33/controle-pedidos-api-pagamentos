@@ -6,6 +6,7 @@ public class MercadoPagoIntegration
 {
     public string Token { get; set; }
     public string UrlWebhook { get; set; }
+    public string SecretWebhook { get; set; }
     public long UserId { get; set; }
     public string ExternalPosId { get; set; }
 

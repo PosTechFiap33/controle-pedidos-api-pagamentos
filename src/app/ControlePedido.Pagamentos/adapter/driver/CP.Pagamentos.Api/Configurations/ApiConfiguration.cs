@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using CP.Pagamentos.Api.Middlewares;
+using CP.Pagamentos.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CP.Pagamentos.Api.Configurations;
@@ -13,6 +14,8 @@ public static class ApiConfiguration
             config.AddConsole();
             config.AddDebug();
         });
+
+        services.AddScoped<IPagamentoApiRequestAuthorization, MercadoPagoApiService>();
 
         services.Configure<ApiBehaviorOptions>(options =>
         {
