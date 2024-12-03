@@ -25,15 +25,19 @@ public class ExceptionHandlingMiddleware
         }
         catch (DomainException ex)
         {
-            await HandleExceptionAsync(context, ex, HttpStatusCode.BadRequest);
+            await HandleExceptionAsync(context, ex, ex.Message, HttpStatusCode.BadRequest);
+        }
+        catch (ApplicationException ex)
+        {
+            await HandleExceptionAsync(context, ex, ex.Message, HttpStatusCode.BadRequest);
         }
         catch (Exception ex)
         {
-            await HandleExceptionAsync(context, ex);
+            await HandleExceptionAsync(context, ex, "Ocorreu um erro interno no servidor!");
         }
     }
 
-    private Task HandleExceptionAsync(HttpContext context, Exception exception, HttpStatusCode status = HttpStatusCode.InternalServerError)
+    private Task HandleExceptionAsync(HttpContext context, Exception exception, string message, HttpStatusCode status = HttpStatusCode.InternalServerError)
     {
         _logger.LogError(exception, "Ocorreu um erro ao processar a requisição: {Message}. StackTrace: {StackTrace}", exception.Message, exception.StackTrace);
 
@@ -42,7 +46,7 @@ public class ExceptionHandlingMiddleware
 
         var errorDetails = new ValidationProblemDetails(new Dictionary<string, string[]> {
                 {
-                    "Mensagens", new string[]{exception.Message}
+                    "Mensagens", new string[]{message}
                 }
             });
 

@@ -20,4 +20,7 @@ awslocal sqs create-queue --queue-name ControlePedidosPagamentos --attributes Me
 # Listar mensagens no SQS
 awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/ControlePedidosPagamentos --max-number-of-messages 10
 
+#publicar mensagem no SQS
+awslocal sqs send-message --queue-url http://localhost:4566/000000000000/ControlePedidosPagamentos --message-body '{"PedidoId":"7ea82f18-8bdc-48a3-84ed-50d242ca7c38","PagamentoId":"987f6543-e21b-34c5-d678-567812340000"}'
+
 echo "Tabela criada com sucesso!"

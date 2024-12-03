@@ -1,5 +1,3 @@
-using System;
-
 namespace CP.Pagamentos.Infra.Configurations;
 
 public class MercadoPagoIntegration
@@ -14,6 +12,7 @@ public class MercadoPagoIntegration
     {
         Token = GetEnvironmentVariableOrDefault("MERCADO_PAGO_TOKEN", Token);
         UrlWebhook = GetEnvironmentVariableOrDefault("MERCADO_PAGO_URL_WEBHOOK", UrlWebhook);
+        UrlWebhook = GetEnvironmentVariableOrDefault("MERCADO_PAGO_SECRET_WEBHOOK", UrlWebhook);
         UserId = long.Parse(GetEnvironmentVariableOrDefault("MERCADO_PAGO_USERID", UserId.ToString()));
         ExternalPosId = GetEnvironmentVariableOrDefault("MERCADO_PAGO_POSID", ExternalPosId);
     }

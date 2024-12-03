@@ -52,12 +52,7 @@ public class PagamentoMercadoPagoProvider : IPagamentoProvider
         catch (ApiException apiEx)
         {
             _logger.LogApiError(apiEx, "Erro de API ao comunicar com o Mercado Pago");
-            return mensagemErro;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Ocorreu um erro ao comunicar com o Mercado Pago: {ErrorMessage}.", e.Message);
-            return mensagemErro;
+            throw new ApplicationException(mensagemErro);
         }
     }
 
