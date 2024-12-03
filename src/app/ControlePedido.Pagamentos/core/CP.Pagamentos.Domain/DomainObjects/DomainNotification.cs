@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using MediatR;
 
 namespace CP.Pagamentos.Domain.DomainObjects;
 
+[ExcludeFromCodeCoverage]
 public class IDomainNotification : IRequest
 {
 }

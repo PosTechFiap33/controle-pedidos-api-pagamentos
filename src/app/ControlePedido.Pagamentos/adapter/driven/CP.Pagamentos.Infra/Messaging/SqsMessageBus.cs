@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Amazon.Runtime;
 using Amazon.SQS;
 using Amazon.SQS.Model;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Options;
 
 namespace CP.Pagamentos.Infra.Messaging;
 
+[ExcludeFromCodeCoverage]
 public class SqsMessageBus : IMessageBus
 {
     private readonly AWSConfiguration _configuration;

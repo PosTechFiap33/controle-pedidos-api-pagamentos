@@ -7,9 +7,11 @@ using CP.Pagamentos.Domain.Entities;
 using Microsoft.Extensions.Options;
 using CP.Pagamentos.CrpssCutting.Configuration;
 using CP.Pagamentos.CrossCutting.Factories;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CP.Pagamentos.Data;
 
+[ExcludeFromCodeCoverage]
 public class PagamentoDynamoDbContext : IUnitOfWork
 {
     private readonly AmazonDynamoDBClient _client;

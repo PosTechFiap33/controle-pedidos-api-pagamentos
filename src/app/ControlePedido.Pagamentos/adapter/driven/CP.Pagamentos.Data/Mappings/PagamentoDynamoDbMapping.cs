@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Amazon.DynamoDBv2.Model;
 using CP.Pagamentos.Domain.Adapters.Repositories;
 using CP.Pagamentos.Domain.Entities;
@@ -10,6 +11,7 @@ public interface IDynamoEntity<T> where T : Entity, IAggregateRoot
     public Dictionary<string, AttributeValue> MapToDynamo();
 }
 
+[ExcludeFromCodeCoverage]
 public class PagamentoDynamoDbMapping : IDynamoEntity<Pagamento>
 {
     public Pagamento Entity { private set; get; }

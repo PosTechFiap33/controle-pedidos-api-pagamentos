@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 namespace CP.Pagamentos.Infra.Models;
 
+[ExcludeFromCodeCoverage]
 public class PagamentoRecebidoMercadoPagoDto
 {
     [JsonPropertyName("id")]

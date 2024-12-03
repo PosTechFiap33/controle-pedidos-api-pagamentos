@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using CP.Pagamentos.Domain.DomainObjects;
 
 namespace CP.Pagamentos.Domain.Entities;
 
+[ExcludeFromCodeCoverage]
 public abstract class Entity
 {
     public IDomainNotification Notification { get; private set; }

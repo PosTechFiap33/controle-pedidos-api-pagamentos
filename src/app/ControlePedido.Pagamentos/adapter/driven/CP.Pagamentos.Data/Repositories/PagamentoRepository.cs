@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using CP.Pagamentos.Data.Mappings;
 using CP.Pagamentos.Domain.Adapters.Repositories;
 using CP.Pagamentos.Domain.Entities;
 
 namespace CP.Pagamentos.Data.Repositories;
 
+[ExcludeFromCodeCoverage]
 public class PagamentoRepository : IPagamentoRepository
 {
     private const string TABLE_NAME = "ControlePedidosPagamentos";

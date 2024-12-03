@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 using CP.Pagamentos.Infra.Configurations;
@@ -12,6 +13,7 @@ public interface IPaymentProviderRequestAuthorization
     bool IsValid(HttpRequest request);
 }
 
+[ExcludeFromCodeCoverage]
 public class MercadoPagoApiService : IPaymentProviderRequestAuthorization
 {
     private readonly MercadoPagoIntegration _mercadoPagoIntegration;

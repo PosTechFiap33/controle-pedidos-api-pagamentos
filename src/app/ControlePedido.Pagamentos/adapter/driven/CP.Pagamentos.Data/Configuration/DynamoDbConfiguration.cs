@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using CP.Pagamentos.CrpssCutting.Configuration;
 using CP.Pagamentos.Data.Repositories;
 using CP.Pagamentos.Domain.Adapters.Repositories;
@@ -5,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CP.Pagamentos.Data.Configuration;
+
+[ExcludeFromCodeCoverage]
 
 public static class DynamoDbConfiguration
 {

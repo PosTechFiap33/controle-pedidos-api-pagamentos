@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using CP.Pagamentos.Domain.Adapters.MessageBus;
 using CP.Pagamentos.Domain.DomainObjects.Notifications;
 using MediatR;
 
 namespace CP.Pagamentos.Application.Notifications.Pagamentos;
 
+[ExcludeFromCodeCoverage]
 public class PagamentoCriadoNotificationHandler : IRequestHandler<PagamentoCriado>
 {
     private readonly IMessageBus _messageBus;

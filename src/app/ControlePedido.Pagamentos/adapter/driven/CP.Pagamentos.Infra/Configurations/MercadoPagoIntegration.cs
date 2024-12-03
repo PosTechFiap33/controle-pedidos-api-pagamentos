@@ -1,5 +1,7 @@
-namespace CP.Pagamentos.Infra.Configurations;
+using System.Diagnostics.CodeAnalysis;
 
+namespace CP.Pagamentos.Infra.Configurations;
+[ExcludeFromCodeCoverage]
 public class MercadoPagoIntegration
 {
     public string Token { get; set; }

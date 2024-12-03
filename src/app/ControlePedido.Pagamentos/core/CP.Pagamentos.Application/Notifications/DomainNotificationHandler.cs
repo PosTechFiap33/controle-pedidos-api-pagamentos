@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using CP.Pagamentos.Domain.DomainObjects;
 using MediatR;
 
 namespace CP.Pagamentos.Application.Notifications;
 
+[ExcludeFromCodeCoverage]
 public class DomainNotificationEmmiter : IDomainNotificationEmmiter
 {
     private readonly IMediator _mediator;

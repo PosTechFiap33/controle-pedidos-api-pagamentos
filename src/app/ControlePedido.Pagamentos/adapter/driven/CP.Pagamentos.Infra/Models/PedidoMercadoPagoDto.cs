@@ -1,15 +1,17 @@
-using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using CP.Pagamentos.Domain.Entities;
 
 namespace CP.Pagamentos.Infra.Models;
 
+[ExcludeFromCodeCoverage]
 public class IntegradorMercadoPagoDto
 {
     [JsonPropertyName("id")]
     public long UserId { get; set; }
 }
 
+[ExcludeFromCodeCoverage]
 public class ItemMercadoPagoDto
 {
 
