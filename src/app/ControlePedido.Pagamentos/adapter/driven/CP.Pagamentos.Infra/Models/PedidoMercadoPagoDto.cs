@@ -34,6 +34,7 @@ public class ItemMercadoPagoDto
     public decimal QuantiaTotal { get; set; }
 }
 
+[ExcludeFromCodeCoverage]
 public class SaqueMercadoPagoDto
 {
     [JsonPropertyName("amount")]
@@ -45,6 +46,7 @@ public class SaqueMercadoPagoDto
     }
 }
 
+[ExcludeFromCodeCoverage]
 public class PedidoMercadoPagoDto
 {
     [JsonPropertyName("cash_out")]

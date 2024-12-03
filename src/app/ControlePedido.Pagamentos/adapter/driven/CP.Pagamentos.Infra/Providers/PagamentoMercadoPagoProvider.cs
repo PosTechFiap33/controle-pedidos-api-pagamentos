@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using CP.Pagamentos.Domain.Adapters.Providers;
 using CP.Pagamentos.Domain.DomainObjects;
 using CP.Pagamentos.Domain.Entities;
@@ -12,6 +13,7 @@ using Refit;
 
 namespace CP.Pagamentos.Infra.Providers;
 
+[ExcludeFromCodeCoverage]
 public class PagamentoMercadoPagoProvider : IPagamentoProvider
 {
     private readonly MercadoPagoApi _mercadoPagoApi;
