@@ -5,8 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    
+    <PropertyGroup>
         <WarningLevel>4</WarningLevel>
         <DocumentationFile>bin\Debug\net8.0\CP.Pagamentos.Api.xml</DocumentationFile>
     </PropertyGroup>
