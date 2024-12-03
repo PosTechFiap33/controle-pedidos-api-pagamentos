@@ -37,6 +37,8 @@ public class Program
 
         app.UseAuthorization();
 
+        app.MapHealthChecks("/health");
+
         app.MapControllers();
 
         app.Run();
