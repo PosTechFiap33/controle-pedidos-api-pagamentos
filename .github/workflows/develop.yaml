@@ -36,11 +36,11 @@ jobs:
     - uses: chill-viking/dotnet-sonar-scanner@v2
       name: Sast Scan and Publish
       with:
-        sonar-project-key: 'PosTechFiap33_controle-pedidos-api-pedidos'
+        sonar-project-key: 'PosTechFiap33_controle-pedidos-api-pagamentos'
         sonar-org-key: 'postechfiap33'
         token: ${{ secrets.GITHUB_TOKEN }}
         sonar-token: ${{ secrets.SONAR_TOKEN }}
-        working-directory: './src/app/ControlePedido.Pedidos'
+        working-directory: './src/app/ControlePedido.Pagamentos'
         checkout: false
 
     - name: Log in to Docker Hub
